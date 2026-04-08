@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
+import Book from '../Book/Book';
 
-const Books = () => {
-  const [allBooks,setallBooks]=useState([]);
-  useEffect(()=>{
-    fetch('booksData.json').
-    then(res=>res.json()).
-    then(data=>
-    {
-      setallBooks(data);
-    }
-    )
 
-  },[])
-  console.log(allBooks)
-  
+const Books = ({data}) => {
   return (
     <div>
-      this is book
-      
+      <h2 className='text-3xl text-center p-4'>Books</h2>
+      <Suspense fallback={<p>Loading</p>}>
+      <div className='grid sm:grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-20 '>
+      {
+        
+        data.map(singleData=> <Book key={singleData.bookId} singleData={singleData}></Book>)
+      }
+      </div>
+      </Suspense>
 
       
     </div>
