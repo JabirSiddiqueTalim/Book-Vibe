@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
-import { addToDB } from '../../utility/addtoDb';
+import { addToDB } from '../../utility/addToDb';
 
 
 const BookDetails = () => {
