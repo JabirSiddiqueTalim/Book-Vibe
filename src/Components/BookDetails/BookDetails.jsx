@@ -1,5 +1,7 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { addToDB } from '../../utility/addtoDb';
+
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -9,10 +11,15 @@ const BookDetails = () => {
   // console.log(singleData);
   const { bookName, author, bookId, image, rating, publisher, yearOfPublishing, tags, review,totalPages } = singleData;
 
+  const hanfleMarkAsRead = id => {
+   
+    addToDB(id);
+}
+
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col lg:flex-row">
+        <div className="hero-content flex-col lg:flex-row ">
           <img
             src={image}
             className="max-w-sm rounded-lg shadow-2xl"
@@ -40,8 +47,8 @@ const BookDetails = () => {
               </div>
 
            <div className='my-3'>
-           <button className="btn  ">Read</button>
-           <button className="btn btn-dash ml-2.5">Wishlist</button>
+           <button className="btn  " onClick={()=>hanfleMarkAsRead(id)}>Add Read Mark</button>
+           <button className="btn btn-dash ml-2.5">Add Wishlist</button>
            </div>
           </div>
         </div>
