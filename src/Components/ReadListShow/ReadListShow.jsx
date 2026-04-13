@@ -12,7 +12,7 @@ const ReadListShow = (read) => {
 
             {/* Right Content Section */}
             <div className="card-body p-0 lg:pl-6">
-                <h2 className="text-2xl font-bold text-gray-900">{bookName}</h2>
+                <h2 className="text-2xl font-bold text-gray-100">{bookName}</h2>
                 <p className="font-medium text-gray-600">By : {author}</p>
 
                 {/* Tags and Year */}
