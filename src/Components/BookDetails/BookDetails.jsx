@@ -1,7 +1,10 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import { addToDB } from '../../utility/addToDb';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
+const MySwal = withReactContent(Swal);
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -9,12 +12,17 @@ const BookDetails = () => {
   const data = useLoaderData();
   const singleData = data.find(data => data.bookId === bookid);
   // console.log(singleData);
-  const { bookName, author, bookId, image, rating, publisher, yearOfPublishing, tags, review,totalPages } = singleData;
+  const { bookName, author, bookId, image, rating, publisher, yearOfPublishing, tags, review, totalPages } = singleData;
 
   const hanfleMarkAsRead = id => {
-   
+
     addToDB(id);
-}
+    MySwal.fire({
+      title: "Good job!",
+      text: "You clicked the button!",
+      icon: "success"
+    });
+  }
 
   return (
     <div>
@@ -36,20 +44,20 @@ const BookDetails = () => {
             {/* <div className='border-t-1 border-dashed'></div> */}
             <div><span className='text-xl'>Tag : </span> <span className=''>
               {
-                tags.map(tag=><button className='text-blue-950 p-3' >{tag}</button>)
+                tags.map(tag => <button className='text-blue-950 p-3' >{tag}</button>)
               }
-              </span></div>
-              <div className='border-t-1 border-dashed py-5'></div>
-              <div>
-               <p><span className='text-gray-600'>Number of Pages :</span>     {totalPages}</p>
-               <p><span className='text-gray-600'>Year of Publishing:</span>   {totalPages}</p>
-               <p><span className='text-gray-600'>Rating:</span>               {rating}</p>
-              </div>
+            </span></div>
+            <div className='border-t-1 border-dashed py-5'></div>
+            <div>
+              <p><span className='text-gray-600'>Number of Pages :</span>     {totalPages}</p>
+              <p><span className='text-gray-600'>Year of Publishing:</span>   {totalPages}</p>
+              <p><span className='text-gray-600'>Rating:</span>               {rating}</p>
+            </div>
 
-           <div className='my-3'>
-           <button className="btn  " onClick={()=>hanfleMarkAsRead(id)}>Add Read Mark</button>
-           <button className="btn btn-dash ml-2.5">Add Wishlist</button>
-           </div>
+            <div className='my-3'>
+              <button className="btn  " onClick={() => hanfleMarkAsRead(id)}>Add Read Mark</button>
+              <button className="btn btn-dash ml-2.5">Add Wishlist</button>
+            </div>
           </div>
         </div>
       </div>
@@ -61,5 +69,5 @@ const BookDetails = () => {
 export default BookDetails;
 // Number of Pages:
 // Publisher:
-// 
+//
 // 
